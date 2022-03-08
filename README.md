@@ -1,5 +1,4 @@
 # arduino-car
-Download <a hrf="https://github.com/adafruit/Adafruit-Motor-Shield-library">AF MOTOR LIBRARY</a>
-
+Download [AF MOTOR LIBRARY](https://github.com/adafruit/Adafruit-Motor-Shield-library)
 
 <code></code>
