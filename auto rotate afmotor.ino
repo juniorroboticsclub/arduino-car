@@ -7,7 +7,7 @@ AF_DCMotor motor4(4);
 #define echo A2    //Echo pin
 #define trigger A3 //Trigger pin
 
-int distance_L, distance_F = 30, distance_R;
+int distance_F = 30;
 long distance;
 int set = 20;
 
@@ -89,7 +89,7 @@ void turnRight(){ //turnRight
     motor4.run(BACKWARD);
   
 }
-void turnLeft(){ //turnRight
+void turnLeft(){ //turnLeft
 
     motor1.run(BACKWARD);
     motor2.run(BACKWARD);
