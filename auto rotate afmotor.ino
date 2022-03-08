@@ -34,15 +34,12 @@ Serial.begin(9600);
 
 
 void loop(){  
-
-//===============================================================================
-//                          Obstacle Avoiding Control
-//===============================================================================     
  distance_F = Ultrasonic_read();
- Serial.print("S=");Serial.println(distance_F);
+ Serial.println(distance_F);
   if (distance_F < set)
   {
     turnRight();
+     delay(1000);
   }else{
     forword();
     }
