@@ -49,11 +49,11 @@ void loop(){
  else{
   forword();
   }
-  
+  delay(10);
 }
 
-delay(10);
-}
+
+
 
 
 
