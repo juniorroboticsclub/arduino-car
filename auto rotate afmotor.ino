@@ -12,7 +12,7 @@ long distance;
 int set = 20;
 
 int Speed = 90;
-
+int turntime = 1000;
 int state = 0;
 
 void setup(){ // put your setup code here, to run once
@@ -41,10 +41,12 @@ void loop(){
   {
     turnRight();
      state = !state ;
-     delay(1000);
+     delay(turntime);
   }
  else  if(distance_F < set && state ==0){
     turnLeft();
+     state = !state ;
+     delay(turntime);
     }
  else{
   forword();
