@@ -12,7 +12,8 @@ long distance;
 int set = 20;
 
 int Speed = 90;
-   
+
+int state = 0;
 
 void setup(){ // put your setup code here, to run once
 
@@ -36,13 +37,18 @@ Serial.begin(9600);
 void loop(){  
  distance_F = Ultrasonic_read();
  Serial.println(distance_F);
-  if (distance_F < set)
+  if (distance_F < set && state ==1)
   {
     turnRight();
+     state = !state ;
      delay(1000);
-  }else{
-    forword();
+  }
+ else  if(distance_F < set && state ==0){
+    turnLeft();
     }
+ else{
+  forword();
+  }
   
 }
 
