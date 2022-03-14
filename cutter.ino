@@ -35,40 +35,26 @@ void setup() {
   delay(100);
 }
 
-void loop() {
- int distanceR = 0;
- int distanceL =  0;
- delay(40);
- 
- if(distance<=15)
- {
-  moveStop();
-  delay(100);
-  moveBackward();
-  delay(300);
-  moveStop();
-  delay(200);
-  distanceR = lookRight();
-  delay(200);
-  distanceL = lookLeft();
-  delay(200);
 
-  if(distanceR>=distanceL)
+void loop(){  
+ distance_F = Ultrasonic_read();
+ Serial.println(distance_F);
+  if (distance_F < set && state ==1)
   {
     turnRight();
-    moveStop();
-  }else
-  {
-    turnLeft();
-    moveStop();
+     state = !state ;
+     delay(turntime);
   }
- }else
- {
-  moveForward();
- }
- distance = readPing();
+ else  if(distance_F < set && state ==0){
+    turnLeft();
+     state = !state ;
+     delay(turntime);
+    }
+ else{
+  forword();
+  }
+  delay(10);
 }
-
 int lookRight()
 {
     myservo.write(50); 
@@ -88,7 +74,7 @@ int lookLeft()
     myservo.write(115); 
     return distance;
     delay(100);
-}
+
 
 int readPing() { 
   delay(70);
