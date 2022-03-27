@@ -41,20 +41,20 @@ void check()
   if (state ==0)
   {
     turnRight();
-      delay(turntime);
+      delay(turn_time);
         forword();
          delay(lengthtime);
           turnRight();
-           delay(turntime);
+           delay(turn_time);
             state = !state ;
   }
  else if(state ==1){
     turnLeft();
-     delay(turntime);
+     delay(turn_time);
        forword();
          delay(lengthtime);
            turnLeft();
-             delay(turntime);
+             delay(turn_time);
               state = !state ;     
     }
 }
