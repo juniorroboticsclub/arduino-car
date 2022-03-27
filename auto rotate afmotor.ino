@@ -1,19 +1,19 @@
 #include <AFMotor.h>
-AF_DCMotor motor1(1);
-AF_DCMotor motor2(2);
-AF_DCMotor motor3(3);
-AF_DCMotor motor4(4);
+AF_DCMotor motor1(1, MOTOR12_1KHZ); 
+AF_DCMotor motor2(2, MOTOR12_1KHZ);
+AF_DCMotor motor3(3, MOTOR34_1KHZ);
+AF_DCMotor motor4(4, MOTOR34_1KHZ);
 
-#define echo A2    //Echo pin
-#define trigger A3 //Trigger pin
-
-int distance_F = 30;
-long distance;
-int set = 20;
 
 int Speed = 90;
-int turntime = 1000;
+
+int forward_time = 10000;
+int turn_time = 2000;
+int lengthtime = 1000;
+
+
 int state = 0;
+
 
 void setup(){ // put your setup code here, to run once
 
@@ -22,54 +22,42 @@ void setup(){ // put your setup code here, to run once
   motor3.setSpeed(Speed);
   motor4.setSpeed(Speed);
 
-pinMode(echo, INPUT );// declare ultrasonic sensor Echo pin as input
-pinMode(trigger, OUTPUT); // declare ultrasonic sensor Trigger pin as Output  
-
-
-
-Serial.begin(9600);
-
-
-
 }
 
 
 void loop(){  
- distance_F = Ultrasonic_read();
- Serial.println(distance_F);
-  if (distance_F < set && state ==1)
+
+forword();
+delay(forward_time);
+check();
+
+}
+
+
+void check()
+{
+
+
+  if (state ==0)
   {
     turnRight();
-     state = !state ;
-     delay(turntime);
+      delay(turntime);
+        forword();
+         delay(lengthtime);
+          turnRight();
+           delay(turntime);
+            state = !state ;
   }
- else  if(distance_F < set && state ==0){
+ else if(state ==1){
     turnLeft();
-     state = !state ;
      delay(turntime);
+       forword();
+         delay(lengthtime);
+           turnLeft();
+             delay(turntime);
+              state = !state ;     
     }
- else{
-  forword();
-  }
-  delay(10);
 }
-
-
-
-
-
-
-
-//**********************Ultrasonic_read****************************
-long Ultrasonic_read(){
-  digitalWrite(trigger, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigger, HIGH);
-  delayMicroseconds(10);
-  distance = pulseIn (echo, HIGH);
-  return distance / 29 / 2;
-}
-
 
 void forword(){  //forword
 
