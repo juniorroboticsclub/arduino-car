@@ -5,7 +5,7 @@ AF_DCMotor motor3(3, MOTOR34_1KHZ);
 AF_DCMotor motor4(4, MOTOR34_1KHZ);
 
 
-int Speed = 90;
+int Speed = 200;
 
 int forward_time = 10000;
 int turn_time = 2000;
