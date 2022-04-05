@@ -48,7 +48,12 @@ void check()
            delay(turn_time);
             state = !state ;
   }
- else if(state ==1){
+  
+forword();
+delay(forward_time);
+ check();
+  
+if(state ==1){
     turnLeft();
      delay(turn_time);
        forword();
@@ -57,6 +62,10 @@ void check()
              delay(turn_time);
               state = !state ;     
     }
+  forword();
+delay(forward_time);
+ check();
+  
 }
 
 void forword(){  //forword
