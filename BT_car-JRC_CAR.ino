@@ -9,6 +9,7 @@ AF_DCMotor motor3(3);
 AF_DCMotor motor4(4);
 
 int Speed = 90;
+int cutter = A0;
    
 int bt_ir_data; // variable to receive data from the serial port and IRremote
 
@@ -21,6 +22,9 @@ void setup(){ // put your setup code here, to run once
 
 Serial.begin(9600); // start serial communication at 9600bps
 BT_Serial.begin(9600); 
+   
+   pinMode(cutter,OUTPUT);
+   digitalWrite(cutter, LOW);
 
 }
 
@@ -29,10 +33,8 @@ void loop(){
 
 if(BT_Serial.available() > 0){  //if some date is sent, reads it and saves in state     
 bt_ir_data = BT_Serial.read(); 
-Serial.println(bt_ir_data);     
-if(bt_ir_data > 20){Speed = bt_ir_data;}      
+Serial.println(bt_ir_data);          
 }
-
 
 
      if(bt_ir_data == 1){forword(); }  // if the bt_data is '1' the DC motor will go forward
@@ -40,7 +42,8 @@ else if(bt_ir_data == 2){backword();}  // if the bt_data is '2' the motor will R
 else if(bt_ir_data == 3){turnLeft();}  // if the bt_data is '3' the motor will turn left
 else if(bt_ir_data == 4){turnRight();} // if the bt_data is '4' the motor will turn right
 else if(bt_ir_data == 5){Stop(); }     // if the bt_data '5' the motor will Stop
-
+else if(bt_ir_data == 9){digitalWrite(cutter, HIGH);} //cutter on  LF pressed 
+else if(bt_ir_data ==10){digitalWrite(cutter, LOW);} //cutter off  OA pressed 
 
 delay(10);
 }
